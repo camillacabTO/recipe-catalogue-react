@@ -1,0 +1,39 @@
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // min-height: 10rem;
+
+    gap: 5px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 18px;
+    align-self: stretch;
+
+    a {
+        color: #fafafa;
+        background-color: #4C8076;
+        width: 150px;
+        padding: 8px 15px;
+        text-align: center;
+        margin: 0 auto;
+        margin-top: 5px;
+        border-radius: 6px;
+        bottom: 8px;
+
+        &:hover {
+            background-color: darken(#4C8076, 10%)
+        }
+
+      }
+
+    span {
+        font-weight: bold;
+    }
+}
