@@ -11,7 +11,7 @@ export default function Search() {
 
   return (
     <div>
-      <h2>Your search result:</h2>
+      <h2>Your search results:</h2>
       {error && <p className={error}>{error}</p>}
       {isPending && <p className={isPending}>Loading...</p>}
       {foundRecipes && <RecipesList recipes={foundRecipes} />}

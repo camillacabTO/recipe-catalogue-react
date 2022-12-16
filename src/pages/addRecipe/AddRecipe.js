@@ -1,6 +1,8 @@
 import styles from './AddRecipe.module.css';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import { db } from '../../firebase/firebase-config';
+import { collection, addDoc, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddRecipe() {
@@ -10,20 +12,24 @@ export default function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [ingredientInput, setIngredientInput] = useState('');
   const ingredientInputRef = useRef(null);
-  const { data, error, postRequest } = useFetch(
-    'http://localhost:3000/recipes',
-    'POST'
-  );
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postRequest({
+    const newRecipe = {
       title,
       cookingTime: time + ' minutes',
       instructions,
       ingredients,
-    });
+    };
+    const collectionRef = collection(db, 'recipes');
+    try {
+      await addDoc(collectionRef, newRecipe);
+      navigate('/');
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const handleAddIngredient = (e) => {
@@ -40,11 +46,11 @@ export default function AddRecipe() {
   };
 
   // postRequest is async. listen to data changing value from null to true once the post request is completed
-  useEffect(() => {
-    if (data) {
-      navigate('/');
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     navigate('/');
+  //   }
+  // }, [data]);
 
   return (
     <div>
@@ -94,6 +100,7 @@ export default function AddRecipe() {
             required
           ></textarea>
           <button>Submit</button>
+          {error && <p className={error}>{error}</p>}
         </label>
       </form>
     </div>
