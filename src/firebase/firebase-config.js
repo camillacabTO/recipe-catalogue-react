@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC1vJk3_Ukvx_QNpWzF6Ga5DF5HyVm0u6E',
-  authDomain: 'recipe-catalogue-3ebee.firebaseapp.com',
-  projectId: 'recipe-catalogue-3ebee',
-  storageBucket: 'recipe-catalogue-3ebee.appspot.com',
-  messagingSenderId: '318032693938',
-  appId: '1:318032693938:web:c3d7512cad2a826dedd7ab',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
