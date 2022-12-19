@@ -1,0 +1,33 @@
+.searchBar {
+
+    input {
+        border: none;
+        height: 100%;
+        width: 75%;
+    }
+
+    input:focus{
+        outline:none;
+    }
+
+    form{
+        border: 2px solid #bbb;
+        border-radius: 5px;
+        margin-left: 5px;
+        padding: 5px 4px;
+        width: 40%;
+        position: relative;
+    }
+
+    button {
+        background-color: #C4FCF0;
+        border: none;
+        position: absolute;
+        right:0;
+        top: 0;
+        height: 100%;
+        width: 25%;
+        cursor: pointer;
+        // margin: auto 0;
+    }
+}

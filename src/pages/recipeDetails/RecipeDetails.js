@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import styles from './RecipeDetails.module.scss';
 import { db } from '../../firebase/firebase-config';
-import { getDoc, doc } from 'firebase/firestore';
-import { useFetch } from '../../hooks/useFetch';
+import { doc, onSnapshot } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
 export default function RecipeDetails() {
@@ -11,23 +10,48 @@ export default function RecipeDetails() {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
+  // Update recipe func example
+  // const handleClick = async () => {
+  //   const recipeDoc = doc(db, 'recipes', id);
+  //   const newFields = { instructions: 'test' };
+  //   await updateDoc(recipeDoc, newFields);
+  // };
+
   useEffect(() => {
     const docRef = doc(db, 'recipes', id);
 
-    getDoc(docRef)
-      .then((docSnapshot) => {
-        if (docSnapshot.exists) {
-          setRecipe(docSnapshot.data());
+    const unsub = onSnapshot(
+      docRef,
+      (doc) => {
+        if (doc.exists) {
+          setRecipe(doc.data());
           setIsPending(false);
         } else {
           setError('Recipe not found');
           setIsPending(false);
         }
-      })
-      .catch((err) => {
+      },
+      (err) => {
         setError(err.message);
         setIsPending(false);
-      });
+      }
+    );
+
+    // getDoc(docRef)
+    //   .then((docSnapshot) => {
+    //     if (docSnapshot.exists) {
+    //       setRecipe(docSnapshot.data());
+    //       setIsPending(false);
+    //     } else {
+    //       setError('Recipe not found');
+    //       setIsPending(false);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     setError(err.message);
+    //     setIsPending(false);
+    //   });
+    return () => unsub();
   }, [id]);
 
   return (

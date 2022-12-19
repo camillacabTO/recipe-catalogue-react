@@ -1,20 +1,33 @@
 .list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-gap: 2rem;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // min-height: 10rem;
-
-    gap: 5px;
-    border: 2px solid #ccc;
+    gap: 8px;
+    border: 2px solid #bbb;
     border-radius: 5px;
     padding: 18px;
-    align-self: stretch;
+
+    div {
+        display: flex;
+        justify-content: space-between;
+
+        h3 {
+            text-transform: capitalize;
+        }
+
+        img {
+            max-width: 1.5rem;
+            cursor: pointer;;
+        }
+    }
 
     a {
         color: #fafafa;

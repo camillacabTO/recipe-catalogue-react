@@ -6,7 +6,7 @@ a {
 
 .navbar {
     background: hsl(22,92%,54%);
-    padding: 20px 0;
+    padding: 20px 12px;
     color: #fff;
     margin-bottom: 30px;
 }
@@ -33,11 +33,11 @@ a {
         border-radius: 5px;
         margin: auto;
         padding: 10px;
+        transition: all 230ms ease-in;
 
         &:hover {
             background-color: #fff;
             color: hsl(22,92%,54%);
-            transition: all 230ms ease-in;
         }
     }
 }

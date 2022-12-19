@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.scss';
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,21 +8,22 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search?query=${searchTerm}`);
+    navigate(`/search?query=${searchTerm.toLowerCase()}`);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <span>Search: </span>
-          <input
-            type='text'
-            onChange={(e) => setSearchTerm(e.target.value)}
-            value={searchTerm}
-            required
-          />
-        </label>
+    <div className={styles.searchBar}>
+      <form>
+        <input
+          type='text'
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder='Search'
+          value={searchTerm}
+          required
+        ></input>
+        <button onClick={handleSubmit}>
+          <i className='fa fa-search'></i>
+        </button>
       </form>
     </div>
   );

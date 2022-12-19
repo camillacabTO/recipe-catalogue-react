@@ -1,8 +1,6 @@
 .container{
-    background-color: #fafafa;
     width: min(100% - 2rem, 1200px);
     min-height: 100vh;
     margin-inline: auto;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 

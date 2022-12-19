@@ -1,8 +1,7 @@
-import styles from './AddRecipe.module.css';
+import styles from './AddRecipe.module.scss';
 import { useRef, useState } from 'react';
-import { useFetch } from '../../hooks/useFetch';
 import { db } from '../../firebase/firebase-config';
-import { collection, addDoc, doc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddRecipe() {
@@ -53,11 +52,11 @@ export default function AddRecipe() {
   // }, [data]);
 
   return (
-    <div>
+    <div className={styles.submitForm}>
       <h2>Create a New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          <span>Receive Title</span>
+          <span>Recipe Title: </span>
           <input
             type='text'
             value={title}
@@ -66,7 +65,7 @@ export default function AddRecipe() {
           />
         </label>
         <label>
-          <span>Cooking Time</span>
+          <span>Cooking Time: </span>
           <input
             type='number'
             value={time}
@@ -75,8 +74,8 @@ export default function AddRecipe() {
           />
         </label>
         <label>
-          <span>Ingredients</span>
-          <div>
+          <span>Ingredients: </span>
+          <div className={styles.ingredientsInput}>
             <input
               type='text'
               onChange={(e) => setIngredientInput(e.target.value)}
@@ -87,9 +86,8 @@ export default function AddRecipe() {
           </div>
         </label>
         <p>
-          Ingredients:
           {ingredients.map((item) => (
-            <span>* {item} </span>
+            <span>{item}, </span>
           ))}
         </p>
         <label>
@@ -99,9 +97,9 @@ export default function AddRecipe() {
             onChange={(e) => setInstructions(e.target.value)}
             required
           ></textarea>
-          <button>Submit</button>
-          {error && <p className={error}>{error}</p>}
         </label>
+        <button type='submit'>Submit</button>
+        {error && <p className={error}>{error}</p>}
       </form>
     </div>
   );

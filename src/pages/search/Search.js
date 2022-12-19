@@ -1,13 +1,39 @@
 import { useSearchParams } from 'react-router-dom';
-import { useFetch } from '../../hooks/useFetch';
 import RecipesList from '../../components/RecipesList';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase/firebase-config';
+import { useEffect, useState } from 'react';
 
 export default function Search() {
   const [searchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const userQuery = searchParams.get('query');
+  const [foundRecipes, setFoundRecipes] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
-  const url = `http://localhost:3000/recipes?q=${query}`;
-  const { data: foundRecipes, error, isPending } = useFetch(url);
+  //substring query
+  const q = query(
+    collection(db, 'recipes'),
+    where('title', '>=', userQuery),
+    where('title', '<=', userQuery + '\uf8ff')
+  );
+
+  useEffect(() => {
+    getDocs(q).then((querySnapshot) => {
+      if (querySnapshot.empty) {
+        setError('No recipes to shows');
+        setIsPending(false);
+        setFoundRecipes(null);
+      } else {
+        let result = [];
+        querySnapshot.docs.forEach((doc) => {
+          result.push({ ...doc.data(), id: doc.id });
+        });
+        setFoundRecipes(result);
+        setIsPending(false);
+      }
+    });
+  }, [q]);
 
   return (
     <div>
