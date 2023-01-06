@@ -1,4 +1,3 @@
-import styles from './AddRecipe.module.scss';
 import { useRef, useState } from 'react';
 import { db } from '../../firebase/firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
@@ -52,7 +51,7 @@ export default function AddRecipe() {
   // }, [data]);
 
   return (
-    <div className={styles.submitForm}>
+    <div className='submitForm'>
       <h2>Create a New Recipe</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -75,7 +74,7 @@ export default function AddRecipe() {
         </label>
         <label>
           <span>Ingredients: </span>
-          <div className={styles.ingredientsInput}>
+          <div className='ingredientsInput'>
             <input
               type='text'
               onChange={(e) => setIngredientInput(e.target.value)}
@@ -99,7 +98,7 @@ export default function AddRecipe() {
           ></textarea>
         </label>
         <button type='submit'>Submit</button>
-        {error && <p className={error}>{error}</p>}
+        {error && <p className='error'>{error}</p>}
       </form>
     </div>
   );
