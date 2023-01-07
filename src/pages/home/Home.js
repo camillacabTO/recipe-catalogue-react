@@ -1,8 +1,9 @@
 import { db } from '../../firebase/firebase-config';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import RecipesList from '../../components/RecipesList';
 import SearchBar from '../search/SearchBar';
 import { useEffect, useState } from 'react';
+import AuthBar from '../../components/AuthBar';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function Home() {
@@ -12,12 +13,14 @@ export default function Home() {
   const { user } = useAuth();
 
   useEffect(() => {
-    let ref = collection(db, 'recipes');
+    const ref = collection(db, 'recipes');
+    const q = query(ref, where('user', '==', user.uid));
+
     const unsub = onSnapshot(
-      ref,
+      q,
       (snapshot) => {
         if (snapshot.empty) {
-          setError('No recipes to shows');
+          setError('No recipes to show');
           setIsPending(false);
           setRecipes(null);
         } else {
@@ -47,16 +50,15 @@ export default function Home() {
     //     setIsPending(false);
     //   }
     // });
-    console.log('user', user);
+    // console.log('user', user);
     return () => unsub();
-  }, []);
+  }, [user.uid]);
 
   return (
     <div>
-      {user && <h4>Hello, {user.displayName}</h4>}
-      {/* add style */}
+      <AuthBar />
       <SearchBar />
-      {error && <p>{error}</p>}
+      {error && <p style={{ marginTop: '2rem' }}>{error}</p>}
       {isPending && <p>Loading...</p>}
       {recipes && <RecipesList recipes={recipes} />}
     </div>

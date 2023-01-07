@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './RecipeDetails.module.scss';
 import { db } from '../../firebase/firebase-config';
 import { doc, onSnapshot } from 'firebase/firestore';
@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 
 export default function RecipeDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
@@ -70,6 +71,13 @@ export default function RecipeDetails() {
           <p>{recipe.instructions}</p>
         </>
       )}
+      <button
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        Go Back
+      </button>
     </div>
   );
 }

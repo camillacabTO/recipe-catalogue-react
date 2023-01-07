@@ -1,0 +1,30 @@
+$light-green:#C4FCF0;
+$base-green: #4C8076;
+
+.auth_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.3rem;
+
+    div{
+        a, button {
+            margin-left: 1rem;
+            background-color: $light-green;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 18px;
+            text-decoration: none;
+            transition: all 230ms ease-in;
+    
+            &:hover {
+                background-color: $base-green;
+                color: #fff;
+            }
+        
+            
+
+        }
+    }
+}
+

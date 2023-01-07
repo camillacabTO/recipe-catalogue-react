@@ -35,10 +35,11 @@
         width: 150px;
         padding: 8px 15px;
         text-align: center;
-        margin: 0 auto;
-        margin-top: 5px;
+        margin: 5px auto;
+        margin-top: 1.5rem;
         border-radius: 6px;
         bottom: 8px;
+        text-decoration: none;
 
         &:hover {
             background-color: darken(#4C8076, 10%)

@@ -1,4 +1,6 @@
 .recipe {
+    display: flex;
+    flex-direction: column;
 
     h1 {
         font-size: 1.3em;
@@ -12,5 +14,22 @@
     p:first-of-type {
         font-style: oblique;
         margin-bottom: 15px;
+    }
+
+    button {
+        color: #fafafa;
+        background-color: #4C8076;
+        width: 150px;
+        padding: 8px 15px;
+        margin: 2rem auto 0;
+        border: none;
+        border-radius: 6px;
+        bottom: 8px;
+        align-self: center;
+
+        &:hover {
+            background-color: darken(#4C8076, 10%)
+        }
+
     }
 }

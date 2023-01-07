@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import styles from './Nav.module.scss';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase/firebase-config';
+import { useNavigate } from 'react-router-dom';
 
 export default function Nav() {
   return (
@@ -8,7 +11,6 @@ export default function Nav() {
         <Link to='/'>Recipe Catalog</Link>
         <div className={styles.links}>
           <Link to='/add-recipe'>Add New Recipe</Link>
-          {/* <p>Search bar</p> */}
         </div>
       </nav>
     </div>

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { db } from '../../firebase/firebase-config';
 import { collection, addDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function AddRecipe() {
   const [title, setTitle] = useState('');
@@ -12,6 +13,7 @@ export default function AddRecipe() {
   const ingredientInputRef = useRef(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ export default function AddRecipe() {
       cookingTime: time + ' minutes',
       instructions,
       ingredients,
+      user: user.uid,
     };
     const collectionRef = collection(db, 'recipes');
     try {

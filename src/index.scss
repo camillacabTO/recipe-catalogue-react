@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
-
+$dark-green: #005246;
+$lighter-green: #4C8076;
+$base-orange: hsl(22,92%,54%);
 
 html, body {
   background-color: #fafafa;
@@ -33,7 +35,7 @@ a {
 
   h2{
       margin-bottom: 2rem;
-      color: #005246;
+      color: $dark-green;
       font-size: 1.5rem;
       text-align: center;
   }
@@ -61,7 +63,7 @@ a {
 
       input, textarea  {
           border: none;
-          border-bottom: 1px solid #005246;
+          border-bottom: 1px solid $dark-green;
           background-color: #fafafa;
           width: 100%;
           padding: 3px;
@@ -69,7 +71,7 @@ a {
 
       textarea {
           min-height: 5rem;
-          border: 1px solid #005246;
+          border: 1px solid $dark-green;
           border-radius: 4px;
 
       }
@@ -77,12 +79,23 @@ a {
       input:focus, textarea:focus{
           outline:none;
       }
+
+      P {
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      a{
+        color: $dark-green;
+        font-weight: 700;
+        text-decoration: none;
+      }
   
   }
 
   button {
           color: #fafafa;
-          background-color: #4C8076;
+          background-color: $lighter-green;
           width: 150px;
           padding: 8px 15px;
           text-align: center;
@@ -93,7 +106,7 @@ a {
           border: none;
   
           &:hover {
-              background-color: darken(#4C8076, 10%)
+              background-color: darken($lighter-green, 10%)
           }
    
   }
@@ -105,13 +118,13 @@ a {
       button {
           width: 15%;
           background-color: #fafafa;
-          color: #4C8076;
-          border: 1px solid #4C8076;
+          color: $lighter-green;
+          border: 1px solid $lighter-green;
           padding: 5px;
           transition: all 150ms ease-in;
 
           &:hover {
-              background-color: #4C8076;
+              background-color: $lighter-green;
               color: #fff;
           }
       };

@@ -1,14 +1,17 @@
-a { 
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
+$base-orange: hsl(22,92%,54%);
 
 .navbar {
-    background: hsl(22,92%,54%);
+    background: $base-orange;
     padding: 20px 12px;
     color: #fff;
     margin-bottom: 30px;
+
+    a { 
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
 }
 
 .navbar nav {
@@ -37,7 +40,7 @@ a {
 
         &:hover {
             background-color: #fff;
-            color: hsl(22,92%,54%);
+            color: $base-orange;
         }
     }
 }

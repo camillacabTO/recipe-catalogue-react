@@ -5,7 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 const FirebaseAuthContext = createContext();
 
 const initialState = {
-  currentUser: null,
+  user: null,
   authStateChecked: false,
 };
 
@@ -24,6 +24,7 @@ const authReducer = (state, action) => {
 
 export const FirebaseAuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  console.log('user from authContext', state.user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

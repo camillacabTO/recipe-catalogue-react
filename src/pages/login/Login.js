@@ -1,36 +1,30 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebase-config';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function SignUp() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [confirmedPassword, setConfirmedPassword] = useState('');
   const [error, setError] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuth();
   const navigate = useNavigate();
 
-  const signup = async (email, password) => {
+  const login = async (email, password) => {
     setIsPending(true);
     setError(null);
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
 
       if (!userCredential) {
-        throw new Error('Could not signup. Try again later.');
+        throw new Error('Could not login. Try again later.');
       }
-
-      await updateProfile(auth.currentUser, {
-        displayName: name,
-      });
 
       dispatch({ type: 'LOGIN', payload: userCredential.user });
 
@@ -47,15 +41,12 @@ export default function SignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (password !== confirmedPassword) {
-      return setError('Passwords do not match');
-    }
-    signup(email, password);
+    login(email, password);
   };
 
   return (
     <div className='submitForm'>
-      <h2>SignUp Here</h2>
+      <h2>Login Here</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Email: </span>
@@ -63,15 +54,6 @@ export default function SignUp() {
             type='text'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          <span>Name: </span>
-          <input
-            type='text'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
@@ -84,21 +66,12 @@ export default function SignUp() {
             required
           />
         </label>
-        <label>
-          <span>Confirm Password: </span>
-          <input
-            type='password'
-            value={confirmedPassword}
-            onChange={(e) => setConfirmedPassword(e.target.value)}
-            required
-          />
-        </label>
         <button type='submit' disabled={isPending}>
-          Sign Up
+          Login
         </button>
         {error && <p className='error'>{error}</p>}
         <p>
-          Already have an account? <Link to='/login'>Log In</Link> now
+          Don't have an account? <Link to='/signup'>Sign Up</Link> now
         </p>
       </form>
     </div>
