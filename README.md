@@ -1,5 +1,13 @@
 # Recipe Catalogue Application
 
-### Create a repository of your own recipes
+## Allow users to create a repository of their own recipes
 
-### Built with React and Firebase. Including real-time database (Firestore) and user Authentication
+### Built with React and Firebase:
+
+- Firebase 9
+- FireStore Real-time database
+- Firebase User Authentication
+- React Router 6
+- Context API
+
+### URL: https://recipe-catalog.netlify.app
