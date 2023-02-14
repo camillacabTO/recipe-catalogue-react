@@ -1,7 +1,7 @@
 import React from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase-config';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import styles from './AuthBar.module.scss';
 
