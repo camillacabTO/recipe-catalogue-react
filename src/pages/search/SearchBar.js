@@ -17,7 +17,7 @@ export default function SearchBar() {
         <input
           type='text'
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder='Search'
+          placeholder='Search Recipes by Ingredients'
           value={searchTerm}
           required
         ></input>
@@ -25,6 +25,7 @@ export default function SearchBar() {
           <i className='fa fa-search'></i>
         </button>
       </form>
+      <em>*Use space between ingredients</em>
     </div>
   );
 }

@@ -14,7 +14,7 @@
         border: 2px solid #bbb;
         border-radius: 5px;
         padding: 5px 4px;
-        width: 40%;
+        width: 50%;
         position: relative;
     }
 
@@ -28,5 +28,15 @@
         width: 25%;
         cursor: pointer;
         // margin: auto 0;
+    }
+
+    em {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+        form {
+            width: 100%;
+        }
     }
 }

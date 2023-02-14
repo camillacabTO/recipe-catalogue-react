@@ -48,7 +48,7 @@ a {
       border-radius: 8px;
       row-gap: 25px;
       padding: 3rem 3rem;
-      max-width: 60%;
+      width: 70%;
       align-self: center;
       margin: 0 auto;
 
@@ -113,10 +113,11 @@ a {
 
   .ingredientsInput {
       input {
-          width: 85%;
+          width: 80%;
       }
       button {
-          width: 15%;
+          width: 20%;
+          min-width: fit-content;
           background-color: #fafafa;
           color: $lighter-green;
           border: 1px solid $lighter-green;
@@ -128,6 +129,12 @@ a {
               color: #fff;
           }
       };
+  }
+
+  @media (max-width: 600px) {
+    form {
+      width: 90%;
+    }
   }
 
 }

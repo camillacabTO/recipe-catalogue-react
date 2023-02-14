@@ -57,7 +57,7 @@ export default function RecipeDetails() {
 
   return (
     <div className={styles.recipe}>
-      {error && <p className={error}>{error}</p>}
+      {error && <p className='error'>{error}</p>}
       {isPending && <p className={isPending}>Loading...</p>}
       {recipe && (
         <>

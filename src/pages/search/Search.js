@@ -3,6 +3,7 @@ import RecipesList from '../../components/RecipesList';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/firebase-config';
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default function Search() {
   const [searchParams] = useSearchParams();
@@ -10,12 +11,12 @@ export default function Search() {
   const [foundRecipes, setFoundRecipes] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useAuth();
 
-  //substring query
   const q = query(
     collection(db, 'recipes'),
-    where('title', '>=', userQuery),
-    where('title', '<=', userQuery + '\uf8ff')
+    where('user', '==', user.uid),
+    where('ingredients', 'array-contains-any', userQuery.split(' '))
   );
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Search() {
   return (
     <div>
       <h2>Your search results:</h2>
-      {error && <p className={error}>{error}</p>}
+      {error && <p className='error'>{error}</p>}
       {isPending && <p className={isPending}>Loading...</p>}
       {foundRecipes && <RecipesList recipes={foundRecipes} />}
     </div>
