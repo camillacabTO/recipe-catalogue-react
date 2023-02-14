@@ -9,5 +9,7 @@
 - Firebase User Authentication
 - React Router 6
 - Context API
+- Hooks
+- Reducers
 
 ### URL: https://recipe-catalog.netlify.app
