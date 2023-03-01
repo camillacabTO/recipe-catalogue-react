@@ -1,3 +1,14 @@
+body {
+    background-image: url('./assets/AnimatedShape2.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* height: 100vh; */
+    /* overflow: hidden; */
+}
+
+input, textarea {
+    background-color: transparent !important;
+}
 .container{
     width: min(100% - 2rem, 1200px);
     min-height: 100vh;
