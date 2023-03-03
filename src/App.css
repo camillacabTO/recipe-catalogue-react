@@ -2,8 +2,6 @@ body {
     background-image: url('./assets/AnimatedShape2.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    /* height: 100vh; */
-    /* overflow: hidden; */
 }
 
 input, textarea {
